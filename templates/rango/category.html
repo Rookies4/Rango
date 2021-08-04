@@ -1,7 +1,6 @@
 {% extends 'rango/base.html' %}
 {% load static %}
 {% load rango_template_tags %}
-
 {% block title_block %}
     {% if category %}
         {{ category.name }}
@@ -10,8 +9,6 @@
     {% endif %}
 {% endblock %}
 {% block body_block %}
-    
-    
     
     {% if category %}
     <h1>{{ category.name }}</h1>
@@ -28,7 +25,23 @@
     {% else %}
     {% for c in cat %}
     <h2><a href="/rango/category/{{ c.slug }}/">{{ c.name }}</a></h2>
-    {% get_page_list c page %}
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" 
+                 href="#{{ c.slug }}">
+                 <img src="{% static 'images/button.jpg' %}" alt="button" width="10" height="10"/>
+              </a>
+            </h4>
+          </div>
+          <div id="{{ c.slug }}" class="panel-collapse collapse in">
+            <div class="panel-body">
+                {% get_page_list c page %}
+        </div>
+      </div>
+    </div>
+  </div>
     {% endfor %}
     {% endif %}
 </div>

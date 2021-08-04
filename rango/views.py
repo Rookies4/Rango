@@ -11,6 +11,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
+from django.db.models.aggregates import Count
 
 
 
@@ -44,6 +45,16 @@ def about(request):
     context_dict['visits'] = request.session['visits']
 
     return render(request, 'rango/about.html', context=context_dict)
+
+def category(request):
+   
+   context_dict = {}
+   category_list = Category.objects.order_by('-likes')
+   page_list = Page.objects.order_by('-views')
+   context_dict['cat'] = category_list
+   context_dict['pag'] = page_list
+   response = render(request, 'rango/category.html', context=context_dict)
+   return response
 
 
 def show_category(request, category_name_slug):

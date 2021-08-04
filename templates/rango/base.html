@@ -4,6 +4,11 @@
 <html>
     <head lang="en">
         <meta charset="UTF-8">
+        {% block css_block %}
+            <link rel="stylesheet" href="{% static 'css/index.css' %}">
+        {% endblock %}
+        <link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
         <title>
             Rango - 
             {% block title_block %}

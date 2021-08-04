@@ -1,3 +1,9 @@
+{% load static %}
+{% load rango_template_tags %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+
 <ul>
 {% if pages %}
         {% for p in pages %}

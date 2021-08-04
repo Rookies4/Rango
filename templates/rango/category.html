@@ -9,7 +9,6 @@
     {% endif %}
 {% endblock %}
 {% block body_block %}
-    
     {% if category %}
     <h1>{{ category.name }}</h1>
     {% if pages %}
@@ -24,15 +23,19 @@
     {% endif %}
     {% else %}
     {% for c in cat %}
-    <h2><a href="/rango/category/{{ c.slug }}/">{{ c.name }}</a></h2>
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" 
+              <div id="main">
+                <div id="left" style=" float:left;"><h2><a href="/rango/category/{{ c.slug }}/">{{ c.name }}</a></h2></div>
+                <div id="right" style="height: 40px; ">
+              <a style="float:left;" data-toggle="collapse" data-parent="#accordion" 
                  href="#{{ c.slug }}">
-                 <img src="{% static 'images/button.jpg' %}" alt="button" width="10" height="10"/>
+                 <img src="{% static 'images/button.jpg' %}" alt="button" width="40" height="40"/>
               </a>
+            </div>
+          </div>
             </h4>
           </div>
           <div id="{{ c.slug }}" class="panel-collapse collapse in">
@@ -42,7 +45,7 @@
       </div>
     </div>
   </div>
+</div>
     {% endfor %}
     {% endif %}
-</div>
 {% endblock %}

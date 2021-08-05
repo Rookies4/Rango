@@ -14,10 +14,20 @@
 </div>
 <!-- category button -->
 <div class = "category">
-
+    <a href="/rango/category/python"><button type="button" class="button btn btn-outline-dark btn-lg">Python</button></a>
+    <a href="/rango/category/django"><button type="button" class="button btn btn-outline-dark btn-lg">Django</button></a>
+    <button type="button" class="button btn btn-outline-dark btn-lg">Pascal</button>
+    <button type="button" class="button btn btn-outline-dark btn-lg">Perl</button></br>
+    <button type="button" class="button btn btn-outline-dark btn-lg">Java</button>
+    <button type="button" class="button btn btn-outline-dark btn-lg">JavaScript</button>
+    <button type="button" class="button btn btn-outline-dark btn-lg">Prolong</button>
+    <button type="button" class="button btn btn-outline-dark btn-lg">PHP</button></br>
+    <a class ="more" href="/rango/category/">see more >> </a>
+    
 </div>
 <div>
-    <h2>Most Liked Categories</h2>
+    <h4>Most Liked Categories</h4>
+    <hr>
 {% if categories %}
     <ul>
     {% for category in categories %}
@@ -30,7 +40,8 @@
 </div>
 
 <div>
-    <h2>Most Viewed Pages</h2>
+    <h4>Most Viewed Pages</h4>
+    <hr>
 {% if pages %}
     <ul>
     {% for page in pages %}

@@ -1,16 +1,31 @@
-body{
-    font-family: 'Montserrat', sans-serif;
-}
 .rango{
     width:60%;
     position:relative;
     left:380px;
     top: 35px;
+    z-index: 0;
 
 }
 .title{
     background-color: #cdf0ea;
 }
 .category{
-    background-color:#f8f9f9
+    background-color:#f8f9f9;
+    text-align: center;
+    position:relative;
+    z-index: 1;
+}
+.button{
+    margin:2% 4% 2% 4%;
+    width:150px;
+    font-family: 'Montserrat';
+}
+.more{
+    position:relative;
+    left:40%;
+    font-family: 'Montserrat';
+}
+h4{
+    font-family: 'Montserrat';
+    padding:3% 0 0 1%;
 }

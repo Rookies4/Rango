@@ -16,28 +16,48 @@
 <div class = "category">
     <a href="/rango/category/python"><button type="button" class="button btn btn-outline-dark btn-lg">Python</button></a>
     <a href="/rango/category/django"><button type="button" class="button btn btn-outline-dark btn-lg">Django</button></a>
-    <button type="button" class="button btn btn-outline-dark btn-lg">Pascal</button>
-    <button type="button" class="button btn btn-outline-dark btn-lg">Perl</button></br>
-    <button type="button" class="button btn btn-outline-dark btn-lg">Java</button>
-    <button type="button" class="button btn btn-outline-dark btn-lg">JavaScript</button>
-    <button type="button" class="button btn btn-outline-dark btn-lg">Prolong</button>
-    <button type="button" class="button btn btn-outline-dark btn-lg">PHP</button></br>
+    <a href="/rango/category/pascal"><button type="button" class="button btn btn-outline-dark btn-lg">Pascal</button></a>
+    <a href="/rango/category/perl"><button type="button" class="button btn btn-outline-dark btn-lg">Perl</button></a></br>
+    <a href="/rango/category/java"><button type="button" class="button btn btn-outline-dark btn-lg">Java</button></a>
+    <a href="/rango/category/javascript"><button type="button" class="button btn btn-outline-dark btn-lg">JavaScript</button></a>
+    <a href="/rango/category/prolong"><button type="button" class="button btn btn-outline-dark btn-lg">Prolong</button></a>
+    <a href="/rango/category/php"><button type="button" class="button btn btn-outline-dark btn-lg">PHP</button></a></br>
     <a class ="more" href="/rango/category/">see more >> </a>
     
 </div>
-<div>
-    <h4>Most Liked Categories</h4>
-    <hr>
-{% if categories %}
-    <ul>
-    {% for category in categories %}
-        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no categories present.</strong>
-{% endif %}
-</div>
+<!-- most like categories -->
+<h4>Most liked Categories</h4>
+<hr>
+<section id="testimonials">
+    <div id="testimonials-carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="/rango/category/python"><img class="testimonials-image" src="{% static 'images/python.png' %}"alt="python"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/rango/category/django"><img class="testimonials-image" src="{% static 'images/django.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/javascript"><img class="testimonials-image" src="{% static 'images/javascript.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/php"><img class="testimonials-image" src="{% static 'images/php.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/java"><img class="testimonials-image" src="{% static 'images/java.png' %}"alt="django"></a>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </section>
 
 <div>
     <h4>Most Viewed Pages</h4>

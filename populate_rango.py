@@ -44,10 +44,19 @@ def populate():
          'url':'http://flask.pocoo.org',
          'views': 78}
     ]
+    javascript_pages = [
+        {'title':'W3Schools',
+         'url':'JavaScript Tutorial - W3Schools',
+         'views': 22},
+        {'title':'JavaScript Core Language',
+         'url':'https://www.pluralsight.com/paths/javascript-core-language',
+         'views': 19}
+    ]
 
     cats = {'Python': {'pages': python_pages, 'views': 128, 'likes': 64},
             'Django': {'pages': django_pages, 'views': 64, 'likes': 32},
-            'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16} }
+            'Other Frameworks': {'pages': other_pages, 'views': 32, 'likes': 16},
+            'Javascript': {'pages': javascript_pages, 'views': 16, 'likes': 7},}
     
     for cat, cat_data in cats.items():
         c = add_cat(cat, views=cat_data['views'], likes=cat_data['likes'])

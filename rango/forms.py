@@ -21,7 +21,7 @@ class PageForm(forms.ModelForm):
                             help_text="Please enter the title of the page.")
     url = forms.URLField(max_length=Page.URL_MAX_LENGTH,
                             help_text="Please enter the URL of the page.")
-    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0))
+    views = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     sum = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     num = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     ave = forms.IntegerField(widget=forms.HiddenInput(), initial=0)

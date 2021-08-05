@@ -29,7 +29,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-
 class Page(models.Model):
     TITLE_MAX_LENGTH = 128
     URL_MAX_LENGTH = 200
@@ -39,9 +38,16 @@ class Page(models.Model):
     title = models.CharField(max_length=128) 
     url = models.URLField() 
     views = models.IntegerField(default=0)
-    score = models.FloatField(default=0)
+    sum = models.IntegerField(default=0)
+    num =models.IntegerField(default=0)
+    ave = models.FloatField(default=0)
+    slug = models.SlugField(unique=True)
     def __str__(self):
-        return self.title
+        return self.titlee
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Page, self).save(*args, **kwargs)
 
 
 class UserProfile(models.Model):

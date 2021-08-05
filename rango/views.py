@@ -1,3 +1,5 @@
+from typing import ValuesView
+from django.core.exceptions import ViewDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category
@@ -12,14 +14,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from datetime import datetime
 from django.db.models.aggregates import Count
-
-
-
-
-
-
-
-
 
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
@@ -193,6 +187,19 @@ def user_logout(request):
     return redirect(reverse('rango:index'))
 
 
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+        likes = 0
+    if cat_id:
+       cat = Category.objects.get(id=int(cat_id))
+       if cat:
+        likes = cat.likes + 1
+        cat.likes = likes
+        cat.save()
+    return HttpResponse(likes)
 
 
 

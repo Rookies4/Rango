@@ -2,6 +2,7 @@
 {% load static %}
 {% load rango_template_tags %}
 <script src="{% static 'jquery/jquery-3.6.0.js' %}"></script>
+<script src="{% static 'jquery/rango-ajax.js' %}"></script>
 {% block title_block %}
     {% if category %}
         {{ category.name }}
@@ -10,8 +11,19 @@
     {% endif %}
 {% endblock %}
 {% block body_block %}
+
+</script>
     {% if category %}
     <h1>{{ category.name }}</h1>
+    <div>
+      <strong id="like_count">{{ category.likes }}</strong> people like this category
+      {% if user.is_authenticated %}
+      <button id="likes" data-catid="{{category.id}}"
+      class="btn btn-primary btn-sm" type="button">
+      Like category
+      </button>
+      {% endif %}
+      </div>
     {% if pages %}
     <ul>
         {% for page in pages %}

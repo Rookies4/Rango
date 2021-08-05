@@ -1,0 +1,16 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.rango{
+    width:60%;
+    position:relative;
+    left:380px;
+    top: 35px;
+
+}
+.title{
+    background-color: #cdf0ea;
+}
+.category{
+    background-color:#f8f9f9
+}

@@ -1,3 +1,5 @@
+from typing import ValuesView
+from django.core.exceptions import ViewDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category
@@ -13,15 +15,6 @@ from django.contrib.auth import logout
 from datetime import datetime
 from django.db.models.aggregates import Count
 
-
-
-
-
-
-
-
-
-
 def index(request):
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
@@ -36,16 +29,6 @@ def index(request):
     
     return  render(request, 'rango/index.html', context=context_dict)
 
-
-
-
-def about(request):
-    context_dict = {}
-    visitor_cookie_handler(request)
-    context_dict['visits'] = request.session['visits']
-
-    return render(request, 'rango/about.html', context=context_dict)
-
 def category(request):
    
    context_dict = {}
@@ -55,6 +38,15 @@ def category(request):
    context_dict['pag'] = page_list
    response = render(request, 'rango/category.html', context=context_dict)
    return response
+
+
+
+def about(request):
+    context_dict = {}
+    visitor_cookie_handler(request)
+    context_dict['visits'] = request.session['visits']
+
+    return render(request, 'rango/about.html', context=context_dict)
 
 
 def show_category(request, category_name_slug):
@@ -195,6 +187,19 @@ def user_logout(request):
     return redirect(reverse('rango:index'))
 
 
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+        likes = 0
+    if cat_id:
+       cat = Category.objects.get(id=int(cat_id))
+       if cat:
+        likes = cat.likes + 1
+        cat.likes = likes
+        cat.save()
+    return HttpResponse(likes)
 
 
 

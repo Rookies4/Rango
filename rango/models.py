@@ -43,7 +43,7 @@ class Page(models.Model):
     ave = models.FloatField(default=0)
     slug = models.SlugField(unique=True)
     def __str__(self):
-        return self.titlee
+        return self.title
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

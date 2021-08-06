@@ -5,28 +5,60 @@
 {% block title_block %}
 {% endblock %}
 {% block css_block %}
-<link rel="stylesheet" href="{% static 'css/category.css' %}">
+<link rel="stylesheet" href="{% static 'css/score.css' %}">
 {% endblock %}
 {% block body_block %}
 <style>
-  div.ex
-  {
-  height: 800px;
-  width:1100px;
-  padding:10px;
-  border:5px solid gray;
-  background-color: gray;
-  margin:111px;
+ 
+  .header {
+  background-color:gray;
+  padding: 20px;
   }
-  </style>
-<div class = "title">
-  <img class="rango" src="{% static 'images/title-image.png' %}" alt="rango">
-</div>
-<br /><br /><br /><br /><br /><br /><br />
+.column {
+  float: left;
+  padding: 10px;
+}
 
+.column.side {
+  background-color :gray;
+  width: 5%;
+}
+
+.column.middle {
+  background-color: #ffffff;
+  width: 90%;
+  height: 100%;
+  border: gray;
+  border-radius:25px
+}
+
+.row:after {
+  background-color:gray;
+  content: "";
+  display: table;
+  clear: both;
+ 
+}
+  .footer {
+  background-color:gray;
+  padding: 10px;
+  text-align: center;
+}
+  </style>
+<br/> <br/> 
+<div style="background-color:gray">
 
     {% if category %}
-    <h1>{{ category.name }}</h1>
+    
+    <div class="header">
+      <a href="/rango/category" style=" width:50%; float:leff;color:black;font-size: larger;"><img src="{% static 'images/back.jpg' %}" alt="button" width="40" height="40"/></a> 
+      <b style="margin-right: auto; margin-left: 45%;font-size: larger;" >{{ category.name }}</b> 
+      <a href="/rango/category/{{ category.slug }}/add_page/" style=" float:right;color:black;font-size: larger;">Add Page</a> 
+    </div>
+    <div class="row">
+      <div class="column side">
+      </div>
+    <div class="column middle">
     <div>
       <strong id="like_count">{{ category.likes }}</strong> people like this category
       {% if user.is_authenticated %}
@@ -43,52 +75,43 @@
           <div class="panel panel-default">
             <div class="panel-heading">
               <h4 class="panel-title">
-                  <div style="margin:50px 10px 0px;"><li><a href="{{ page.url }}">{{ page.title }}</a>
-                    the average score of this page is <strong id="score_count"> {{page.ave}}</strong>
-                    </li></div><br/>                
-                <a style="margin:50px 10px 50px;" data-toggle="collapse" data-parent="#accordion" 
-                   href="#{{ page.slug }}" class="aaa">
+                  <div style="margin:50px 10px 0px;font-size: 20px;"><li><a href="{{ page.url }}">{{ page.title }}</a></li><hr />
+                    average score:  <strong id="score_count"> {{page.ave}}</strong>
+                    </li></div>               
+                <a style="margin:50px 10px 50px;font-size: 15px;" 
+                   href="/rango/category/{{ category.slug }}/{{ page.slug }}/pagescore" >
                   Add a score
-                </a><br/>
+                </a>
             </div>
               </h4>
             </div>
-            <div id="{{ page.slug }}" class="panel-collapse collapse in">
-              <div class="panel-body">
-                <div class="ex">
-                  <div id="starRating">
-                             <p style=" font-size: 40px;margin:100px 500px 160px;">Rating</p>
-                    <p class="photo"style=" margin:0px  0px 160px 200px;">
-                       <span><i class="high"></i><i class="nohigh"></i></span>
-                       <span><i class="high"></i><i class="nohigh"></i></span>
-                       <span><i class="high"></i><i class="nohigh"></i></span>
-                       <span><i class="high"></i><i class="nohigh"></i></span>
-                       <span><i class="high"></i><i class="nohigh"></i></span>
-                    </p>
-                    <div class="bottoms" data-catid="{{page.id}}">
-                       <button class="blackBtn sureStar {{page.id}}" id="score" data-catid="{{page.id}}" type="button">OK</button>
-                   </div>
-                  </div>
-                </div>
-                  <br />
-          </div>
-        </div>
+           
       </div>
     
-      <br/>
-
-
-        
-        
-
+    
+ 
     {% endfor %}
     </ul>
     {% endif %}
-    {% if user.is_authenticated %}
-    <a href="/rango/category/{{ category.slug }}/add_page/">Add Page</a> <br />
-    {% endif %}
+  </div>
+  <div class="column side"></div>
+  </div>
+</div>
     {% else %}
+    {% if user.is_authenticated %}
+    <div class="header">
+      <a href="/rango/" style=" width:50%; float:leff;color:black;font-size: larger;"><img src="{% static 'images/back.jpg' %}" alt="button" width="40" height="40"/></a> 
+      <b style="margin-right: auto; margin-left: 45%;font-size: larger;" >All categories</b> 
+      <a href="/rango/add_category/" style=" float:right;color:black;font-size: larger;">Add Catrgory</a> 
+    </div>
+    
+    {% endif %}
+    <div class="row">
+      <div class="column side">
+      </div>
+    <div class="column middle">
     {% for c in cat %}
+    
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -111,8 +134,15 @@
       </div>
     </div>
   </div>
-</div>
+
     {% endfor %}
+  </div>
+  <div class="column side">
+  </div>
+</div>
     {% endif %}
-  
+  </div>
+  <div class="footer">
+    <p></p>
+  </div>
 {% endblock %}

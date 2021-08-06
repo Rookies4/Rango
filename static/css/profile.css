@@ -1,5 +1,5 @@
 h1.welcome{
-    font-family:Lucida Console;
+  font-family: "Montserrat";
     font-weight: 100;
     margin-top:60px;
 	margin-bottom:10px;
@@ -57,7 +57,7 @@ h1.welcome{
 }
 #sidetitle{
   font-size:x-large;
-  font-family: Lucida Console;
+  font-family: "Montserrat";
   color: rgb(255, 255, 255); 
   padding:60px 60px;
 }
@@ -72,7 +72,7 @@ h1.welcome{
   height:66%;
 }
 .favoritetitle{
-  font-family: Lucida Console;
+  font-family: "Montserrat";
   color:rgb(0, 0, 0)
 }
 .boxinfavorite{
@@ -84,5 +84,5 @@ h1.welcome{
 .favoritecontent{
   color:white;
   font-size:large;
-  font-family: Lucida Console;
+  font-family: "Montserrat";
 }

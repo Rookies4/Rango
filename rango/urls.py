@@ -17,16 +17,9 @@ urlpatterns = [
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('favorite/<username>/', views.FavoriteView.as_view(), name='favorite'),
     path('logout/', views.user_logout, name='logout'),
-<<<<<<< HEAD
-    path('like/', views.like_category, name='like_category'),
-    path('search/', views.search, name='search'),
-    path('score/', views.score_page, name='score_page'),
-   
-=======
     path('score1/', views.score_page1, name='score_page1'),
     path('like/', views.like_category, name='like_category'),
     path('search/', views.search, name='search'),
     path('score/', views.score_page, name='score_page'),
     path('category/<slug:category_name_slug>/<slug:page_title_slug>/pagescore', views.pagescore, name='pagescore'),
->>>>>>> 7fde4fce73a23ba78c06a4702a045e28ad38c942
 ]

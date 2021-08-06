@@ -1,46 +1,80 @@
 {% extends 'rango/base.html' %}
-{% load staticfiles %}
+{% load static %}
 
 {% block title_block %}
     Homepage
 {% endblock %}
-
-{% block body_block %}
-<h1>Rango says...</h1>
-<div>
-    {% if user.is_authenticated %}
-        howdy {{ user.username }}!
-    {% else %}
-        hey there partner!
-    {% endif %}
-<br />
-</div>
-
-<div>
-    <h2>Most Liked Categories</h2>
-{% if categories %}
-    <ul>
-    {% for category in categories %}
-        <li><a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no categories present.</strong>
-{% endif %}
-</div>
-
-<div>
-    <h2>Most Viewed Pages</h2>
-{% if pages %}
-    <ul>
-    {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <strong>There are no pages present.</strong>
-{% endif %}
-</div>
-
-<img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
+{% block css_block %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 {% endblock %}
+{% block body_block %}
+<!-- title part -->
+<div class = "title">
+    <img class="rango" src="{% static 'images/title-image.png' %}" alt="rango">
+</div>
+<!-- category button -->
+<div class = "category">
+    <a href="/rango/category/python"><button type="button" class="button btn btn-outline-dark btn-lg">Python</button></a>
+    <a href="/rango/category/django"><button type="button" class="button btn btn-outline-dark btn-lg">Django</button></a>
+    <a href="/rango/category/pascal"><button type="button" class="button btn btn-outline-dark btn-lg">Pascal</button></a>
+    <a href="/rango/category/perl"><button type="button" class="button btn btn-outline-dark btn-lg">Perl</button></a></br>
+    <a href="/rango/category/java"><button type="button" class="button btn btn-outline-dark btn-lg">Java</button></a>
+    <a href="/rango/category/javascript"><button type="button" class="button btn btn-outline-dark btn-lg">JavaScript</button></a>
+    <a href="/rango/category/prolong"><button type="button" class="button btn btn-outline-dark btn-lg">Prolog</button></a>
+    <a href="/rango/category/php"><button type="button" class="button btn btn-outline-dark btn-lg">PHP</button></a></br>
+    <a class ="more" href="/rango/category/">see more >> </a>
+    
+</div>
+<!-- most like categories -->
+<h4>Most liked Categories</h4>
+<hr>
+<section id="testimonials">
+    <div id="testimonials-carousel" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <a href="/rango/category/python"><img class="testimonials-image" src="{% static 'images/python.png' %}"alt="python"></a>
+        </div>
+        <div class="carousel-item">
+          <a href="/rango/category/django"><img class="testimonials-image" src="{% static 'images/django.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/javascript"><img class="testimonials-image" src="{% static 'images/javascript.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/php"><img class="testimonials-image" src="{% static 'images/php.png' %}"alt="django"></a>
+        </div>
+        <div class="carousel-item">
+            <a href="/rango/category/java"><img class="testimonials-image" src="{% static 'images/java.png' %}"alt="django"></a>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonials-carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </section>
+<!-- most viewed pages -->
+<div>
+    <h4>Most Viewed Pages</h4>
+    <hr>
+    {% if pages %}
+    <ul class="most_viewed list-group list-group-flush">
+    {% for page in pages %}
+        <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <strong>There are no pages present.</strong>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}
+
+ 

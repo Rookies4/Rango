@@ -1,4 +1,6 @@
 import re
+from typing import ValuesView
+from django.core.exceptions import ViewDoesNotExist
 from django.shortcuts import render
 from django.http import HttpResponse
 from rango.models import Category, Page, UserProfile
@@ -15,11 +17,8 @@ from datetime import datetime
 from django.views import View
 from django.utils.decorators import method_decorator
 from django.contrib.auth.models import User
-
-
-
-
-
+from django.db.models.aggregates import Count
+from rango.bing_search import run_query
 
 
 
@@ -37,6 +36,15 @@ def index(request):
     
     return  render(request, 'rango/index.html', context=context_dict)
 
+def category(request):
+   
+   context_dict = {}
+   category_list = Category.objects.order_by('-likes')
+   page_list = Page.objects.order_by('-views')
+   context_dict['cat'] = category_list
+   context_dict['pag'] = page_list
+   response = render(request, 'rango/category.html', context=context_dict)
+   return response
 
 
 
@@ -173,6 +181,17 @@ def visitor_cookie_handler(request):
         request.session['last_visit'] = last_visit_cookie
     request.session['visits'] = visits
 
+def search(request):
+    result_list = []
+    query = ''
+    
+    if request.method == 'POST':
+        query = request.POST['query'].strip() 
+        if query:
+            result_list = run_query(query)
+
+    return render(request, 'rango/search.html', {'result_list': result_list, 'query': query})
+
 
 
 @login_required 
@@ -185,13 +204,49 @@ def user_logout(request):
     logout(request)
     return redirect(reverse('rango:index'))
 
+@login_required
+def like_category(request):
+    cat_id = None
+    if request.method == 'GET':
+        cat_id = request.GET['category_id']
+        likes = 0
+    if cat_id:
+       cat = Category.objects.get(id=int(cat_id))
+       if cat:
+        likes = cat.likes + 1
+        cat.likes = likes
+        cat.save()
+    return HttpResponse(likes)
+
+@login_required
+def score_page(request):
+    pag_id = None
+    if request.method == 'GET':
+        pag_id = request.GET['page_id']
+        num1 = request.GET['score']
+        sum = 0
+        num = 0
+        ave = 0
+    if pag_id:
+       pag = Page.objects.get(id=int(pag_id))
+       if pag:
+        num = pag.num + 1
+        pag.num = num
+        sum = pag.sum + int(float(num1))
+        pag.sum = sum
+        ave=sum/num
+        pag.ave = ave
+        pag.save()
+    return HttpResponse(ave)
+
+
 class ProfileView(View):
     def get_user_details(self, username):
         try:
             user = User.objects.get(username=username)
         except User.DoesNotExist:
             return None
-        
+
         user_profile = UserProfile.objects.get_or_create(user=user)[0]
         form = UserProfileForm({'website': user_profile.website,
                                 'picture': user_profile.picture})

@@ -1,0 +1,57 @@
+.rango{
+    width:60%;
+    position:relative;
+    left:380px;
+    top: 35px;
+    z-index: 0;
+
+}
+.title{
+    background-color: #cdf0ea;
+}
+.category{
+    background-color:#f8f9f9;
+    text-align: center;
+    position:relative;
+    z-index: 1;
+}
+.button{
+    margin:3% 4% 2% 4%;
+    width:150px;
+    font-family: 'Montserrat';
+}
+.more{
+    position:relative;
+    left:40%;
+    font-family: 'Montserrat';
+}
+h4{
+    font-family: 'Montserrat';
+    padding:3% 0 0 1%;
+}
+.testimonials-image{
+    width: 60%;
+    margin: 20px;
+}
+.carousel-item{
+    padding:5% 15%;
+}
+#testimonials{
+    text-align: center;
+}
+.most_viewed{
+    font-family: 'Montserrat';
+}
+/* made it responsive */
+@media screen and (max-width:1025px) {
+    .title{
+      padding:3%;
+      text-align: center;
+    }
+    .rango{
+      width:120%;
+      position:static;
+
+    }
+  
+}

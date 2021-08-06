@@ -1,22 +1,87 @@
 {% extends 'rango/base.html' %}
 {% load static %}
 {% load rango_template_tags %}
+
 {% block title_block %}
-    {% if category %}
-        {{ category.name }}
-    {% else %}
-        Unknown Category
-    {% endif %}
+{% endblock %}
+{% block css_block %}
+<link rel="stylesheet" href="{% static 'css/category.css' %}">
 {% endblock %}
 {% block body_block %}
-    
+<style>
+  div.ex
+  {
+  height: 800px;
+  width:1100px;
+  padding:10px;
+  border:5px solid gray;
+  background-color: gray;
+  margin:111px;
+  }
+  </style>
+<div class = "title">
+  <img class="rango" src="{% static 'images/title-image.png' %}" alt="rango">
+</div>
+<br /><br /><br /><br /><br /><br /><br />
+
+
     {% if category %}
     <h1>{{ category.name }}</h1>
+    <div>
+      <strong id="like_count">{{ category.likes }}</strong> people like this category
+      {% if user.is_authenticated %}
+      <button id="likes" data-catid="{{category.id}}"
+      class="btn btn-primary btn-sm" type="button">
+      Like category
+      </button>
+      {% endif %}
+      </div>
     {% if pages %}
     <ul>
         {% for page in pages %}
-        <li><a href="{{ page.url }}">{{ page.title }}</a></li>
-        {% endfor %}
+        <div class="panel-group" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                  <div style="margin:50px 10px 0px;"><li><a href="{{ page.url }}">{{ page.title }}</a>
+                    the average score of this page is <strong id="score_count"> {{page.ave}}</strong>
+                    </li></div><br/>                
+                <a style="margin:50px 10px 50px;" data-toggle="collapse" data-parent="#accordion" 
+                   href="#{{ page.slug }}" class="aaa">
+                  Add a score
+                </a><br/>
+            </div>
+              </h4>
+            </div>
+            <div id="{{ page.slug }}" class="panel-collapse collapse in">
+              <div class="panel-body">
+                <div class="ex">
+                  <div id="starRating">
+                             <p style=" font-size: 40px;margin:100px 500px 160px;">Rating</p>
+                    <p class="photo"style=" margin:0px  0px 160px 200px;">
+                       <span><i class="high"></i><i class="nohigh"></i></span>
+                       <span><i class="high"></i><i class="nohigh"></i></span>
+                       <span><i class="high"></i><i class="nohigh"></i></span>
+                       <span><i class="high"></i><i class="nohigh"></i></span>
+                       <span><i class="high"></i><i class="nohigh"></i></span>
+                    </p>
+                    <div class="bottoms" data-catid="{{page.id}}">
+                       <button class="blackBtn sureStar {{page.id}}" id="score" data-catid="{{page.id}}" type="button">OK</button>
+                   </div>
+                  </div>
+                </div>
+                  <br />
+          </div>
+        </div>
+      </div>
+    
+      <br/>
+
+
+        
+        
+
+    {% endfor %}
     </ul>
     {% endif %}
     {% if user.is_authenticated %}
@@ -24,15 +89,19 @@
     {% endif %}
     {% else %}
     {% for c in cat %}
-    <h2><a href="/rango/category/{{ c.slug }}/">{{ c.name }}</a></h2>
     <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" 
+              <div id="main">
+                <div id="left" style=" float:left;"><h2><a href="/rango/category/{{ c.slug }}/">{{ c.name }}</a></h2></div>
+                <div id="right" style="height: 40px;margin:30px 20px 30px;">
+              <a style="float:left;" data-toggle="collapse" data-parent="#accordion" 
                  href="#{{ c.slug }}">
-                 <img src="{% static 'images/button.jpg' %}" alt="button" width="10" height="10"/>
+                 <img src="{% static 'images/button.jpg' %}" alt="button" width="40" height="40"/>
               </a>
+            </div>
+          </div>
             </h4>
           </div>
           <div id="{{ c.slug }}" class="panel-collapse collapse in">
@@ -42,7 +111,8 @@
       </div>
     </div>
   </div>
+</div>
     {% endfor %}
     {% endif %}
-</div>
+  
 {% endblock %}

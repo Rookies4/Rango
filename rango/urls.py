@@ -6,6 +6,7 @@ app_name = 'rango'
 urlpatterns = [
     path('', views.index, name='index'),
     path('about/', views.about, name='about'),
+    path('category/',views.category, name='category'),
     path('category/<slug:category_name_slug>/',
         views.show_category, name='show_category'),
     path('add_category/', views.add_category, name='add_category'),
@@ -15,4 +16,8 @@ urlpatterns = [
     path('restricted/', views.restricted, name='restricted'),
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
     path('logout/', views.user_logout, name='logout'),
+
+    path('like/', views.like_category, name='like_category'),
+    path('search/', views.search, name='search'),
+    path('score/', views.score_page, name='score_page'),
 ]

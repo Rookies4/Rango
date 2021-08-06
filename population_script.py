@@ -45,7 +45,7 @@ def populate():
          'views': 78}
     ]
     javascript_pages = [
-        {'title':'avaScript Tutorial - W3Schools',
+        {'title':'javaScript Tutorial - W3Schools',
          'url':'https://www.w3schools.com/js/',
          'views': 78},
         {'title':'JavaScript Core Language',
@@ -102,7 +102,7 @@ def populate():
         {'title':'PHP Tutorial - Tutorialspoint',
         'url':'https://www.tutorialspoint.com/php/index.htm',
         'views': 92}, 
-        {'title': 'JPHP Tutorial for Beginners: Learn in 7 Days - Guru99',
+        {'title': 'PHP Tutorial for Beginners: Learn in 7 Days - Guru99',
         'url':'hhttps://www.guru99.com/php-tutorials.html',
         'views':36}
     ]

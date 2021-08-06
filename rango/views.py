@@ -291,3 +291,17 @@ class ProfileView(View):
 #     context_dict['visits'] = request.session['visits']
 
 #     return render(request, 'rango/about.html', context=context_dict)
+
+
+@login_required
+def pagescore(request,category_name_slug,page_title_slug):
+ context_dict = {}
+ try:
+        category = Category.objects.get(slug=category_name_slug)
+        page = Page.objects.get(slug=page_title_slug)
+        context_dict['page'] = page
+        context_dict['category'] = category
+ except Category.DoesNotExist:
+        context_dict['page'] = None
+        context_dict['category'] = None
+ return render(request, 'rango/pagescore.html', context=context_dict)

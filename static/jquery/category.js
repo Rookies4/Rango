@@ -51,7 +51,14 @@ $(function () {
                  function(data) {
                  $('#score_count').html(data);
                  $('#score').hide();
+                 $('#hi').hide();
                  $('#finish').show();
+               })
+            $.get('/rango/score1/', 
+                 {'page_id': pagid,
+                },
+                 function(data) {
+                 $('#num_count').html(data);
                })
             }
         })

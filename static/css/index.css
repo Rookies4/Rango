@@ -30,7 +30,7 @@ h4{
     padding:3% 0 0 1%;
 }
 .testimonials-image{
-    width: 10%;
+    width: 60%;
     margin: 20px;
 }
 .carousel-item{
@@ -49,9 +49,9 @@ h4{
       text-align: center;
     }
     .rango{
-      width:100%;
+      width:120%;
       position:static;
 
     }
   
-  }
+}

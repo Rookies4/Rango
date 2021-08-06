@@ -72,7 +72,7 @@ def populate():
         }, 
     ]
     javascript_pages = [
-        {'title':'avaScript Tutorial - W3Schools',
+        {'title':'JavaScript Tutorial - W3Schools',
          'url':'https://www.w3schools.com/js/',
          'views': 7890,
         'sum' : 121,

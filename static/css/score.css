@@ -4,7 +4,7 @@
     width: 8%;
     height: 40px;
     overflow: hidden;
-    margin-right: 2.5%;
+    margin-left: 2.5%;
     cursor: pointer;
     /* border: 1px solid black; */
 }
@@ -71,3 +71,11 @@
 .blueBtn:hover {
     background: #0e73d0;
 }
+#starRating .photo {
+    width:25rem;
+    position: relative;
+    right:3rem;
+
+}
+
+

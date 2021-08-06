@@ -20,4 +20,5 @@ urlpatterns = [
     path('like/', views.like_category, name='like_category'),
     path('search/', views.search, name='search'),
     path('score/', views.score_page, name='score_page'),
+    path('category/<slug:category_name_slug>/<slug:page_title_slug>/pagescore', views.pagescore, name='pagescore'),
 ]

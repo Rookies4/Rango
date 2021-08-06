@@ -239,6 +239,20 @@ def score_page(request):
         pag.save()
     return HttpResponse(ave)
 
+@login_required
+def score_page1(request):
+    pag_id = None
+    if request.method == 'GET':
+        pag_id = request.GET['page_id']
+        num = 0
+
+    if pag_id:
+       pag = Page.objects.get(id=int(pag_id))
+       if pag:
+        num = pag.num + 1
+        pag.num = num
+    return HttpResponse(num)
+
 
 class ProfileView(View):
     def get_user_details(self, username):

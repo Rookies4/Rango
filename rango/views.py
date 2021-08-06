@@ -234,10 +234,24 @@ def score_page(request):
         pag.num = num
         sum = pag.sum + int(float(num1))
         pag.sum = sum
-        ave=sum/num
+        ave=round(sum/num,2)
         pag.ave = ave
         pag.save()
     return HttpResponse(ave)
+
+@login_required
+def score_page1(request):
+    pag_id = None
+    if request.method == 'GET':
+        pag_id = request.GET['page_id']
+        num = 0
+
+    if pag_id:
+       pag = Page.objects.get(id=int(pag_id))
+       if pag:
+        num = pag.num + 1
+        pag.num = num
+    return HttpResponse(num)
 
 
 class ProfileView(View):
@@ -341,3 +355,17 @@ class FavoriteView(View):
 #     context_dict['visits'] = request.session['visits']
 
 #     return render(request, 'rango/about.html', context=context_dict)
+
+
+@login_required
+def pagescore(request,category_name_slug,page_title_slug):
+ context_dict = {}
+ try:
+        category = Category.objects.get(slug=category_name_slug)
+        page = Page.objects.get(slug=page_title_slug)
+        context_dict['page'] = page
+        context_dict['category'] = category
+ except Category.DoesNotExist:
+        context_dict['page'] = None
+        context_dict['category'] = None
+ return render(request, 'rango/pagescore.html', context=context_dict)

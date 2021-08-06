@@ -6,14 +6,57 @@
 {% endblock %}
 
 {% block body_block %}
-<div class="jumbotron p-4">
-    <div class="container">
-        <h1 class="jumbotron-heading">Add a Category</h1>
+<style>
+ 
+    .header {
+    background-color:gray;
+    padding: 20px;
+    }
+  .column {
+    float: left;
+    padding: 10px;
+  }
+  
+  .column.side {
+    background-color :gray;
+    width: 5%;
+  }
+  
+  .column.middle {
+    background-color: #ffffff;
+    width: 90%;
+    height: 100%;
+    border: gray;
+    border-radius:25px
+  }
+  
+  .row:after {
+    background-color:gray;
+    content: "";
+    display: table;
+    clear: both;
+   
+  }
+    .footer {
+    background-color:gray;
+    padding: 10px;
+    text-align: center;
+  }
+    </style>
+  <br/> <br/> 
+  <div class="header">
+    <a href="/rango/category" style=" width:50%; float:leff;color:black;font-size: larger;"><img src="{% static 'images/back.jpg' %}" alt="button" width="40" height="40"/></a> 
+    <b style="margin-right: auto; margin-left: 41.5%;font-size: larger;" >Adding new category</b> 
+  </div>
+  <div class="row">
+    <div class="column side">
     </div>
+  <div class="column middle">
+<div class="jumbotron p-4">
 </div>
 <div class="container">
     <div class="row">
-        <form role="form" id="category_form" method="post" action="{% url 'rango:add_category' %}">
+        <form role="form" id="category_form" method="post" action="{% url 'rango:add_category' %}"style="margin-right: auto; margin-left: 38%;font-size: larger;">
             {% csrf_token %}
             {% for hidden in form.hidden_fields %}
                 {{ hidden }}
@@ -25,9 +68,16 @@
                 <div class="p-2"></div>
             {% endfor %}
             <br />
-            <button class="btn btn-primary" type="submit" name="submit">Create Category</button>
+            <button class="btn btn-primary" type="submit" name="submit"style="width:20%">Finish</button>
             <div class="p-5"></div>
         </form>
     </div>
+</div>
+</div>
+<br />
+<div class="column side">
+</div>
+<div class="footer">
+<p></p>
 </div>
 {% endblock %}

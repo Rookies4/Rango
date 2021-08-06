@@ -1,7 +1,8 @@
 $(function () {
-    //评分
+    
+    $('#finish').hide();
     var starRating = 0;
-    //鼠标移入
+   
     $('.photo span').on('mouseenter', function () {
         var index = $(this).index() + 1;
         $(this).prevAll().find('.high').css('z-index', 1);
@@ -9,7 +10,7 @@ $(function () {
         $(this).nextAll().find('.high').css('z-index', 0);
         $('.starNum').html((index * 2).toFixed(1) + '分');
     });
-    //鼠标离开
+   
     $('.photo').on('mouseleave', function () {
         $(this).find('.high').css('z-index', 0);
         var count = starRating / 2;
@@ -21,22 +22,22 @@ $(function () {
         }
         $('.starNum').html(starRating.toFixed(1) + '分')
     }),
-        //点击
+        
         $('.photo span').on('click', function () {
             var index = $(this).index() + 1;
             $(this).prevAll().find('.high').css('z-index', 1)
             $(this).find('.high').css('z-index', 1);
             starRating = index * 2;
             $('.starNum').html(starRating.toFixed(1) + '分');
-            //alert('评分：' + (starRating.toFixed(1) + '分'))
+            
         });
-        //取消评分
+   
         $('.cancleStar').on('click',function () {
             starRating = 0;
             $('.photo span').find('.high').css('z-index',0);
             $('.starNum').html(starRating.toFixed(1)+'分');
         });
-        //确定评分
+
         $('.sureStar').on('click',function () {
             if(starRating===0) {
                 alert('最低一颗星！');
@@ -49,10 +50,16 @@ $(function () {
                 },
                  function(data) {
                  $('#score_count').html(data);
-                 $('.{{pagid}}').hide();
+                 $('#score').hide();
+                 $('#hi').hide();
+                 $('#finish').show();
                })
-               alert('评分：'+(starRating.toFixed(1)+'分'))
-               return starRating.toFixed(1)
+            $.get('/rango/score1/', 
+                 {'page_id': pagid,
+                },
+                 function(data) {
+                 $('#num_count').html(data);
+               })
             }
         })
 })

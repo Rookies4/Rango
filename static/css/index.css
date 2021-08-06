@@ -30,7 +30,7 @@ h4{
     padding:3% 0 0 1%;
 }
 .testimonials-image{
-    width: 70%;
+    width: 10%;
     margin: 20px;
 }
 .carousel-item{
@@ -42,3 +42,16 @@ h4{
 .most_viewed{
     font-family: 'Montserrat';
 }
+/* made it responsive */
+@media screen and (max-width:1025px) {
+    .title{
+      padding:3%;
+      text-align: center;
+    }
+    .rango{
+      width:100%;
+      position:static;
+
+    }
+  
+  }

@@ -234,7 +234,7 @@ def score_page(request):
         pag.num = num
         sum = pag.sum + int(float(num1))
         pag.sum = sum
-        ave=sum/num
+        ave=round(sum/num,2)
         pag.ave = ave
         pag.save()
     return HttpResponse(ave)

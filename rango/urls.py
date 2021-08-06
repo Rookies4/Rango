@@ -15,9 +15,10 @@ urlpatterns = [
     path('login/', views.user_login, name='login'),
     path('restricted/', views.restricted, name='restricted'),
     path('profile/<username>/', views.ProfileView.as_view(), name='profile'),
+    path('favorite/<username>/', views.FavoriteView.as_view(), name='favorite'),
     path('logout/', views.user_logout, name='logout'),
-
     path('like/', views.like_category, name='like_category'),
     path('search/', views.search, name='search'),
     path('score/', views.score_page, name='score_page'),
+   
 ]

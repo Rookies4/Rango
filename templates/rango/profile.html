@@ -27,6 +27,7 @@
         <div>
                 <kbd>my favorite</kbd> 
         </div> -->
+        {% if user.is_authenticated %}
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-2" >                   
@@ -48,11 +49,12 @@
                     <a id="blank">-</a><br />
                     <a id="blank">-</a><br />
                     <ul id="main-nav" class="nav nav-tabs nav-stacked">
-                        <li><a href="#" id="sidecotent" >My favorite</a></li>
+                        <li><a href="{% url 'rango:favorite' user.username %}" id="sidecotent" >My favorite</a></li>
                     </ul>              
                 </div>
             </div>        
         </div>
+        {% endif %}
 
         
     </div> 

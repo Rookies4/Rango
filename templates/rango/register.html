@@ -1,5 +1,5 @@
 {% load static %}
-
+<form action="." method="post">{% csrf_token %}
 {% block css_block %}
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
